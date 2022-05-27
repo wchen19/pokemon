@@ -20,6 +20,10 @@
   font-size: 1.5rem;
 }
 
+.home .option-tab .tab:hover {
+  cursor: pointer;
+}
+
 .home .option-tab .tab:hover div,
 .home .option-tab .active-tab {
   position: relative;
@@ -30,4 +34,13 @@
   border-radius: 5px;
   opacity: 0.3;
   transition: all 0.1s;
+}
+
+.home .poke-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
 }

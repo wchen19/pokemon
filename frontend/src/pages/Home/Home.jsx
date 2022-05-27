@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PokeCard from '../../components/PokeCard/PokeCard';
+import { pokemons } from '../../api/api';
 import './Home.css';
 
 const Home = () => {
+  const [showGallery, setShowGallery] = useState(true);
+
   const tabClick = (e) => {
     let active = document.getElementsByClassName('active-tab');
     if (active.length !== 0) active[0].classList.remove('active-tab');
     let target = e.target.querySelector('div');
     target.classList.add('active-tab');
-    console.log(target);
+
+    if (e.target.innerText === 'Pokemon Gallery') {
+      setShowGallery(true);
+    } else {
+      setShowGallery(false);
+    }
   };
 
   return (
@@ -20,7 +29,33 @@ const Home = () => {
           My Pokemon<div></div>
         </div>
       </div>
-      <div className='poke-list'></div>
+      <div className='poke-list'>
+        {showGallery
+          ? pokemons.map((pokemon, key) => (
+              <PokeCard
+                key={key}
+                name={pokemon.name}
+                hp={pokemon.hp}
+                attack={pokemon.attack}
+                defense={pokemon.defense}
+                type={pokemon.type}
+                captured={pokemon.captured}
+              />
+            ))
+          : pokemons.map(
+              (pokemon, key) =>
+                pokemon.captured && (
+                  <PokeCard
+                    key={key}
+                    name={pokemon.name}
+                    hp={pokemon.hp}
+                    attack={pokemon.attack}
+                    defense={pokemon.defense}
+                    type={pokemon.type}
+                  />
+                )
+            )}
+      </div>
     </div>
   );
 };
