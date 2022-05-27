@@ -6,7 +6,7 @@ export const pokemons = [
     attack: 49,
     defense: 49,
     type: 'Grass',
-    captured: true,
+    captured: false,
   },
   {
     id: 2,
