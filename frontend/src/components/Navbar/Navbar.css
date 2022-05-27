@@ -4,11 +4,12 @@
   width: 100%;
   overflow: hidden;
   display: flex;
-  /* background: #fd4d4d; */
+  background: white;
   color: #fd4d4d;
   padding: 1rem 0;
   align-items: center;
   justify-content: space-between;
+  z-index: 100;
 }
 
 .left-navbar {
