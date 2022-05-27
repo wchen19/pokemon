@@ -4,6 +4,14 @@ import './Navbar.css';
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const navClick = (e) => {
+    let active = document.getElementsByClassName('active');
+    if (active.length !== 0) active[0].classList.remove('active');
+    let target = e.target.querySelector('div');
+    target.classList.add('active');
+  };
+
   return (
     <div className='navbar'>
       <div className='left-navbar'>
@@ -14,8 +22,14 @@ const Navbar = () => {
         {isLoggedIn ? (
           <>
             <ul>
-              <li>Catch Pokemon</li>
-              <li>Pokemon Collection</li>
+              <li onClick={navClick}>
+                Catch Pokemon
+                <div></div>
+              </li>
+              <li onClick={navClick}>
+                Pokemon Storage
+                <div className='active'></div>
+              </li>
             </ul>
             <div className='user' onClick={() => setIsLoggedIn(false)}>
               Wilbert Chen

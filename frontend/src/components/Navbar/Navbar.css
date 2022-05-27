@@ -4,8 +4,8 @@
   width: 100%;
   overflow: hidden;
   display: flex;
-  background: #fd4d4d;
-  color: white;
+  /* background: #fd4d4d; */
+  color: #fd4d4d;
   padding: 1rem 0;
   align-items: center;
   justify-content: space-between;
@@ -56,19 +56,14 @@
   cursor: pointer;
 }
 
-.right-navbar ul li:after {
-  content: '';
-  display: block;
-  margin: auto;
+.right-navbar ul li:hover div,
+.right-navbar ul .active {
+  position: relative;
+  margin-top: 0.2rem;
   height: 3px;
-  width: 0px;
-  background: transparent;
-  transition: width 0.3s;
-}
-
-.right-navbar ul li:hover:after {
-  width: 100%;
-  background: white;
+  background: #a7d9ff;
+  border-radius: 5px;
+  transition: all 0.1s;
 }
 
 .right-navbar .user,
@@ -90,7 +85,7 @@
 .right-navbar .login:hover {
   background-color: #a7d9ff;
   font-weight: 600;
-  color: black;
+  color: rgb(61, 61, 61);
   /* box-shadow: 0px 7px 15px 6px rgba(0, 0, 0, 0.1); */
   cursor: pointer;
   transform: scale(1.05);
