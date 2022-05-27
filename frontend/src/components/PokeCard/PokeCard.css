@@ -1,0 +1,75 @@
+.card {
+  border-radius: 10px;
+  padding-top: 2rem;
+  width: 300px;
+  /* height: 20px; */
+  box-shadow: 0px 8px 10px 4px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+  cursor: default;
+}
+
+.card.disabled:hover {
+  cursor: not-allowed;
+}
+
+.card .name {
+  font-family: 'Bangers';
+  color: black;
+  font-size: 3rem;
+  text-align: center;
+  padding-bottom: 1rem;
+  /* transform: translateY(-80%); */
+}
+
+.card .info-section {
+  background: white;
+  border-radius: 10px;
+  width: 100%;
+  padding: 1rem 0;
+  font-family: 'IBM Plex Mono';
+  /* opacity: 0; */
+}
+
+.card .info-section .info {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 1.2rem;
+  color: #fd4d4d;
+}
+
+.info .hp,
+.info .attack,
+.info .defense {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.info span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.info-section .type {
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+/* .card:hover {
+  height: fit-content;
+}
+.card:hover .name {
+  transform: translate(0);
+  font-size: 3rem;
+}
+.card:hover .info-section {
+  opacity: 1;
+} */
