@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './GameBox.css';
 
-const GameBox = ({ name, state, setState }) => {
+const GameBox = ({ name, captured, state, setState }) => {
   const [chances, setChances] = useState(3);
   const [randomNum, setRandomNum] = useState(0);
   const [number, setNumber] = useState(0);
@@ -15,6 +15,7 @@ const GameBox = ({ name, state, setState }) => {
   const guessNum = () => {
     if (number === randomNum) {
       setState('win');
+      captured = true;
       return;
     } else if (number <= randomNum) {
       setChances(chances - 1);
