@@ -7,6 +7,7 @@ export const pokemons = [
     defense: 49,
     type: 'Grass',
     captured: false,
+    image: 'https://i.postimg.cc/cCBzVRXZ/1.png',
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const pokemons = [
     defense: 43,
     type: 'Fire',
     captured: false,
+    image: 'https://i.postimg.cc/Hs3Kztr9/4.png',
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ export const pokemons = [
     defense: 65,
     type: 'Water',
     captured: false,
+    image: 'https://i.postimg.cc/CLwXb2xK/7.png',
   },
   {
     id: 4,
@@ -34,6 +37,7 @@ export const pokemons = [
     defense: 40,
     type: 'Normal',
     captured: false,
+    image: 'https://i.postimg.cc/5tkQSDJW/16.png',
   },
   {
     id: 5,
@@ -43,6 +47,7 @@ export const pokemons = [
     defense: 35,
     type: 'Normal',
     captured: false,
+    image: 'https://i.postimg.cc/nzjjRTVj/19.png',
   },
   {
     id: 6,
@@ -52,6 +57,7 @@ export const pokemons = [
     defense: 40,
     type: 'Electric',
     captured: false,
+    image: 'https://i.postimg.cc/pTw9g8y0/25.png',
   },
   {
     id: 7,
@@ -61,6 +67,7 @@ export const pokemons = [
     defense: 20,
     type: 'Normal',
     captured: false,
+    image: 'https://i.postimg.cc/PrkpymgJ/39.png',
   },
   {
     id: 8,
@@ -70,6 +77,7 @@ export const pokemons = [
     defense: 25,
     type: 'Ground',
     captured: false,
+    image: 'https://i.postimg.cc/jqfny8kB/50.png',
   },
   {
     id: 9,
@@ -79,6 +87,7 @@ export const pokemons = [
     defense: 50,
     type: 'Fighting',
     captured: false,
+    image: 'https://i.postimg.cc/J0jymnkR/66.png',
   },
   {
     id: 10,
@@ -88,15 +97,17 @@ export const pokemons = [
     defense: 35,
     type: 'Water',
     captured: false,
+    image: 'https://i.postimg.cc/Nf7yzKt4/72.png',
   },
   {
-    id: 1,
+    id: 11,
     name: 'Geodude',
     hp: 40,
     attack: 80,
     defense: 100,
     type: 'Rock',
     captured: false,
+    image: 'https://i.postimg.cc/L89qKm6M/74.png',
   },
   {
     id: 12,
@@ -106,6 +117,7 @@ export const pokemons = [
     defense: 65,
     type: 'Water',
     captured: false,
+    image: 'https://i.postimg.cc/K801mCR3/79.png',
   },
   {
     id: 13,
@@ -115,6 +127,7 @@ export const pokemons = [
     defense: 70,
     type: 'Electric',
     captured: false,
+    image: 'https://i.postimg.cc/HLKjy50p/81.png',
   },
   {
     id: 14,
@@ -124,6 +137,7 @@ export const pokemons = [
     defense: 53,
     type: 'Fighting',
     captured: false,
+    image: 'https://i.postimg.cc/hjdvbjMV/106.png',
   },
   {
     id: 15,
@@ -133,14 +147,16 @@ export const pokemons = [
     defense: 5,
     type: 'Normal',
     captured: false,
+    image: 'https://i.postimg.cc/QCZt63nw/113.png',
   },
   {
     id: 16,
-    name: 'Mr. Mine',
+    name: 'Mr. Mime',
     hp: 40,
     attack: 45,
     defense: 65,
     type: 'Psychic',
     captured: false,
+    image: 'https://i.postimg.cc/tg7YJDxS/122.png',
   },
 ];

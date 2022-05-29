@@ -6,6 +6,7 @@ import './CatchPokemon.css';
 const CatchPokemon = () => {
   const [state, setState] = useState('start');
   const [name, setName] = useState();
+  const [image, setImage] = useState();
 
   useEffect(() => {
     const pokemon = () => {
@@ -14,6 +15,7 @@ const CatchPokemon = () => {
       );
       const num = Math.floor(Math.random() * wildPokemons.length);
       setName(wildPokemons[num].name);
+      setImage(wildPokemons[num].image);
     };
     pokemon();
   }, []);
@@ -28,6 +30,7 @@ const CatchPokemon = () => {
       ${name} was caught!`
           : state === 'lose' && `Oh no! The wild ${name} fled.`}
       </div>
+      <img src={image} alt={name} />
       <GameBox name={name} state={state} setState={setState} />
     </div>
   );

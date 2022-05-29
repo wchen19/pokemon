@@ -31,10 +31,11 @@ const Home = ({ isLoggedIn }) => {
       </div>
       <div className='poke-list'>
         {isLoggedIn && showGallery
-          ? pokemons.map((pokemon, key) => (
+          ? pokemons.map((pokemon) => (
               <PokeCard
-                key={key}
+                key={pokemon.id}
                 name={pokemon.name}
+                image={pokemon.image}
                 hp={pokemon.hp}
                 attack={pokemon.attack}
                 defense={pokemon.defense}
@@ -48,10 +49,12 @@ const Home = ({ isLoggedIn }) => {
                   <PokeCard
                     key={key}
                     name={pokemon.name}
+                    image={pokemon.image}
                     hp={pokemon.hp}
                     attack={pokemon.attack}
                     defense={pokemon.defense}
                     type={pokemon.type}
+                    showGallery={showGallery}
                   />
                 )
             )}

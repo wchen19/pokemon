@@ -4,7 +4,16 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import BoltIcon from '@mui/icons-material/Bolt';
 import './PokeCard.css';
 
-const PokeCard = ({ name, hp, attack, defense, type, captured = false }) => {
+const PokeCard = ({
+  name,
+  image,
+  hp,
+  attack,
+  defense,
+  type,
+  captured = false,
+  showGallery = false,
+}) => {
   const [color, setColor] = useState('');
 
   useEffect(() => {
@@ -47,35 +56,38 @@ const PokeCard = ({ name, hp, attack, defense, type, captured = false }) => {
       className={`${captured ? 'card disabled' : 'card'}`}
       style={{ background: color, opacity: captured ? 0.5 : 1 }}
     >
+      <img src={image} alt={name} />
       <div className='name'>{name}</div>
-      <div className='info-section'>
-        <div className='info'>
-          <div className='hp'>
-            <span>HP</span>
-            <span>
-              <FavoriteIcon />
-              {hp}
-            </span>
+      {showGallery && (
+        <div className='info-section'>
+          <div className='info'>
+            <div className='hp'>
+              <span>HP</span>
+              <span>
+                <FavoriteIcon />
+                {hp}
+              </span>
+            </div>
+            <div className='attack'>
+              <span>ATTACK</span>
+              <span>
+                <BoltIcon />
+                {attack}
+              </span>
+            </div>
+            <div className='defense'>
+              <span>DEFENSE</span>
+              <span>
+                <SecurityIcon />
+                {defense}
+              </span>
+            </div>
           </div>
-          <div className='attack'>
-            <span>ATTACK</span>
-            <span>
-              <BoltIcon />
-              {attack}
-            </span>
-          </div>
-          <div className='defense'>
-            <span>DEFENSE</span>
-            <span>
-              <SecurityIcon />
-              {defense}
-            </span>
+          <div className='type' style={{ color: color }}>
+            {type}
           </div>
         </div>
-        <div className='type' style={{ color: color }}>
-          {type}
-        </div>
-      </div>
+      )}
     </div>
   );
 };

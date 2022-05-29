@@ -12,13 +12,13 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
   };
 
   useEffect(() => {
-    if (window.location.pathname === '/catch-pokemon') {
+    if (window.location.pathname === '/catch-pokemon' && isLoggedIn === true) {
       const catchPokemon = document.getElementById('catch');
       let active = document.getElementsByClassName('active');
       if (active.length !== 0) active[0].classList.remove('active');
       catchPokemon.querySelector('div').classList.add('active');
     }
-  }, []);
+  }, [isLoggedIn]);
 
   return (
     <div className='navbar'>
@@ -48,6 +48,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
               onClick={() => {
                 setIsLoggedIn(false);
                 localStorage.setItem('isLoggedIn', JSON.stringify(false));
+                window.location.replace(window.location.origin);
               }}
             >
               Wilbert Chen

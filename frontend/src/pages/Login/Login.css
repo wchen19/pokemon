@@ -51,13 +51,17 @@
 }
 
 .login-page .submit-btn {
-  border: 1px solid black;
+  background: #fd4d4d;
+  color: white;
+  border: none;
   border-radius: 50px;
   padding: 0.5rem 2rem;
   margin-top: 2rem;
   font-size: 1.2rem;
   text-align: center;
   align-self: center;
+
+  transition: all 0.2s;
 }
 
 .login-page .change-form {
@@ -68,4 +72,16 @@
 .login-page .change-form:hover,
 .login-page .check-pwd {
   cursor: pointer;
+}
+
+.login-page .submit-btn:hover {
+  transform: scale(1.05);
+  font-weight: 600;
+}
+
+.login-page .submit-btn:disabled {
+  opacity: 0.5;
+  transform: scale(1);
+  font-weight: normal;
+  cursor: default;
 }

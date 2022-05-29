@@ -8,9 +8,13 @@
 }
 
 .catch-pokemon .title {
-  border: 1px solid black;
+  border: 5px double black;
   border-radius: 15px;
   padding: 1rem;
   font-size: 1.5rem;
   font-family: 'IBM Plex Mono';
+}
+
+.catch-pokemon img {
+  width: 200px;
 }
