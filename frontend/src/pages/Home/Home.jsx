@@ -3,7 +3,7 @@ import PokeCard from '../../components/PokeCard/PokeCard';
 import { pokemons } from '../../api/api';
 import './Home.css';
 
-const Home = () => {
+const Home = ({ isLoggedIn }) => {
   const [showGallery, setShowGallery] = useState(true);
 
   const tabClick = (e) => {
@@ -30,7 +30,7 @@ const Home = () => {
         </div>
       </div>
       <div className='poke-list'>
-        {showGallery
+        {isLoggedIn && showGallery
           ? pokemons.map((pokemon, key) => (
               <PokeCard
                 key={key}

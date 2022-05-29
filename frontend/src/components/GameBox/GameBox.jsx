@@ -15,20 +15,18 @@ const GameBox = ({ name, state, setState }) => {
   const guessNum = () => {
     if (number === randomNum) {
       setState('win');
+      return;
     } else if (number <= randomNum) {
       setChances(chances - 1);
       setMsg(`Wrong guess, ${number} is too low.`);
       setNumber(0);
-      if (chances === 1) {
-        setState('lose');
-      }
     } else if (number >= randomNum) {
       setChances(chances - 1);
       setMsg(`Wrong guess ${number} is too high.`);
       setNumber(0);
-      if (chances === 1) {
-        setState('lose');
-      }
+    }
+    if (chances === 1) {
+      setState('lose');
     }
   };
 
@@ -40,6 +38,12 @@ const GameBox = ({ name, state, setState }) => {
         break;
       case 'guess':
         guessNum();
+        break;
+      case 'win':
+        window.location.replace(window.location.href);
+        break;
+      case 'lose':
+        window.location.replace(window.location.href);
         break;
       default:
         break;

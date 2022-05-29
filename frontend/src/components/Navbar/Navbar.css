@@ -48,6 +48,11 @@
   align-items: center;
 }
 
+.right-navbar ul a {
+  text-decoration: none;
+  color: #fd4d4d;
+}
+
 .right-navbar ul li {
   font-size: 1.5rem;
   list-style: none;

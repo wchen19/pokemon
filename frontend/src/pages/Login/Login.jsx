@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => {
   const [state, setState] = useState('login');
   const [userData, setUserData] = useState({});
   const [isNameError, setIsNameError] = useState(true);
@@ -52,14 +52,20 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (state === 'signup') {
-      console.log(userData.email);
       localStorage.setItem(userData.email, JSON.stringify(userData));
       document.getElementsByClassName('confirm-pwd')[0].value = '';
       document.getElementsByClassName('name')[0].value = '';
       setState('login');
     } else {
       const user = JSON.parse(localStorage.getItem(userData.email));
-      user.password !== userData.password ? setError(true) : setError(false);
+      if (user.password === userData.password) {
+        setError(false);
+        setIsLoggedIn(true);
+        localStorage.setItem('isLoggedIn', JSON.stringify(true));
+        window.location.replace(window.location.origin);
+      } else {
+        setError(true);
+      }
     }
     document.getElementsByClassName('email')[0].value = '';
     document.getElementsByClassName('pwd')[0].value = '';
