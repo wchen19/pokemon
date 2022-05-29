@@ -1,0 +1,71 @@
+.login-page {
+  margin-top: 90px;
+  padding: 3rem 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-page .form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 1.5rem;
+  width: 50%;
+}
+
+.login-page .title {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.login-page .name,
+.login-page .email,
+.login-page .pwd,
+.login-page .confirm-pwd {
+  border: none;
+  border-radius: 10px;
+  background: rgb(202, 202, 202);
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+}
+
+.login-page .name,
+.login-page .email,
+.login-page .pwd,
+.login-page .confirm-pwd,
+.login-page .show-pwd,
+.login-page .change-form {
+  margin-top: 1rem;
+}
+
+.login-page .show-pwd {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.login-page .submit-btn {
+  border: 1px solid black;
+  border-radius: 50px;
+  padding: 0.5rem 2rem;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  text-align: center;
+  align-self: center;
+}
+
+.login-page .change-form {
+  text-align: center;
+}
+
+.login-page .submit-btn:hover,
+.login-page .change-form:hover,
+.login-page .check-pwd {
+  cursor: pointer;
+}
