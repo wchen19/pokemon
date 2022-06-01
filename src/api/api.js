@@ -1,162 +1,23 @@
-export const pokemons = [
-  {
-    id: 1,
-    name: 'Bulbasaur',
-    hp: 45,
-    attack: 49,
-    defense: 49,
-    type: 'Grass',
-    captured: false,
-    image: 'https://i.postimg.cc/cCBzVRXZ/1.png',
-  },
-  {
-    id: 2,
-    name: 'Charmander',
-    hp: 39,
-    attack: 52,
-    defense: 43,
-    type: 'Fire',
-    captured: false,
-    image: 'https://i.postimg.cc/Hs3Kztr9/4.png',
-  },
-  {
-    id: 3,
-    name: 'Squirtle',
-    hp: 44,
-    attack: 48,
-    defense: 65,
-    type: 'Water',
-    captured: false,
-    image: 'https://i.postimg.cc/CLwXb2xK/7.png',
-  },
-  {
-    id: 4,
-    name: 'Pidgey',
-    hp: 40,
-    attack: 45,
-    defense: 40,
-    type: 'Normal',
-    captured: false,
-    image: 'https://i.postimg.cc/5tkQSDJW/16.png',
-  },
-  {
-    id: 5,
-    name: 'Rattata',
-    hp: 30,
-    attack: 56,
-    defense: 35,
-    type: 'Normal',
-    captured: false,
-    image: 'https://i.postimg.cc/nzjjRTVj/19.png',
-  },
-  {
-    id: 6,
-    name: 'Pikachu',
-    hp: 35,
-    attack: 55,
-    defense: 40,
-    type: 'Electric',
-    captured: false,
-    image: 'https://i.postimg.cc/pTw9g8y0/25.png',
-  },
-  {
-    id: 7,
-    name: 'Jigglypuff',
-    hp: 115,
-    attack: 45,
-    defense: 20,
-    type: 'Normal',
-    captured: false,
-    image: 'https://i.postimg.cc/PrkpymgJ/39.png',
-  },
-  {
-    id: 8,
-    name: 'Diglett',
-    hp: 10,
-    attack: 55,
-    defense: 25,
-    type: 'Ground',
-    captured: false,
-    image: 'https://i.postimg.cc/jqfny8kB/50.png',
-  },
-  {
-    id: 9,
-    name: 'Machop',
-    hp: 70,
-    attack: 80,
-    defense: 50,
-    type: 'Fighting',
-    captured: false,
-    image: 'https://i.postimg.cc/J0jymnkR/66.png',
-  },
-  {
-    id: 10,
-    name: 'Tentacool',
-    hp: 40,
-    attack: 40,
-    defense: 35,
-    type: 'Water',
-    captured: false,
-    image: 'https://i.postimg.cc/Nf7yzKt4/72.png',
-  },
-  {
-    id: 11,
-    name: 'Geodude',
-    hp: 40,
-    attack: 80,
-    defense: 100,
-    type: 'Rock',
-    captured: false,
-    image: 'https://i.postimg.cc/L89qKm6M/74.png',
-  },
-  {
-    id: 12,
-    name: 'Slowpoke',
-    hp: 90,
-    attack: 65,
-    defense: 65,
-    type: 'Water',
-    captured: false,
-    image: 'https://i.postimg.cc/K801mCR3/79.png',
-  },
-  {
-    id: 13,
-    name: 'Magnemite',
-    hp: 25,
-    attack: 35,
-    defense: 70,
-    type: 'Electric',
-    captured: false,
-    image: 'https://i.postimg.cc/HLKjy50p/81.png',
-  },
-  {
-    id: 14,
-    name: 'Hitmonlee',
-    hp: 50,
-    attack: 120,
-    defense: 53,
-    type: 'Fighting',
-    captured: false,
-    image: 'https://i.postimg.cc/hjdvbjMV/106.png',
-  },
-  {
-    id: 15,
-    name: 'Chansey',
-    hp: 250,
-    attack: 5,
-    defense: 5,
-    type: 'Normal',
-    captured: false,
-    image: 'https://i.postimg.cc/QCZt63nw/113.png',
-  },
-  {
-    id: 16,
-    name: 'Mr. Mime',
-    hp: 40,
-    attack: 45,
-    defense: 65,
-    type: 'Psychic',
-    captured: false,
-    image: 'https://i.postimg.cc/tg7YJDxS/122.png',
-  },
-];
+import { useState } from 'react';
+
+export default function useToken() {
+  const getToken = () => {
+    const tokenString = localStorage.getItem('token');
+    const userToken = JSON.parse(tokenString);
+    return userToken?.token;
+  };
+
+  const [token, setToken] = useState(getToken());
+
+  const saveToken = (userToken) => {
+    localStorage.setItem('token', JSON.stringify(userToken));
+    setToken(userToken.token);
+  };
+
+  return {
+    setToken: saveToken,
+    token,
+  };
+}
+
+export const API_URL = 'http://localhost:8000/';

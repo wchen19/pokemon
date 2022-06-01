@@ -3,21 +3,15 @@ import SecurityIcon from '@mui/icons-material/Security';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import BoltIcon from '@mui/icons-material/Bolt';
 import './PokeCard.css';
+import axios from 'axios';
+import useToken, { API_URL } from '../../api/api';
 
-const PokeCard = ({
-  name,
-  image,
-  hp,
-  attack,
-  defense,
-  type,
-  captured = false,
-  showGallery = false,
-}) => {
+const PokeCard = ({ pokemon, showData = false }) => {
+  const { token } = useToken();
   const [color, setColor] = useState('');
 
   useEffect(() => {
-    switch (type) {
+    switch (pokemon.type) {
       case 'Grass':
         setColor('#67F70A');
         break;
@@ -49,42 +43,73 @@ const PokeCard = ({
         setColor('gray');
         break;
     }
-  }, [type]);
+  }, [pokemon.type]);
+
+  const releasePokemon = async () => {
+    const wildPokemon = { ...pokemon, captured: false, level: 0 };
+
+    try {
+      const item = await axios.post(
+        `${API_URL}pokemon/addpokemon/${pokemon.id}`,
+        wildPokemon,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (item?.status === 201) {
+        console.log(item);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    window.location.replace(window.location.href);
+  };
 
   return (
     <div
-      className={`${captured ? 'card disabled' : 'card'}`}
-      style={{ background: color, opacity: captured ? 0.5 : 1 }}
+      className={`${!showData && pokemon.captured ? 'card disabled' : 'card'}`}
+      style={{
+        background: color,
+        opacity: !showData && pokemon.captured ? 0.5 : 1,
+      }}
     >
-      <img src={image} alt={name} />
-      <div className='name'>{name}</div>
-      {showGallery && (
+      <img src={pokemon.image} alt={pokemon.name} />
+      <div className='name'>{pokemon.name}</div>
+      {showData && (
         <div className='info-section'>
           <div className='info'>
             <div className='hp'>
               <span>HP</span>
               <span>
                 <FavoriteIcon />
-                {hp}
+                {pokemon.hp}
               </span>
             </div>
             <div className='attack'>
               <span>ATTACK</span>
               <span>
                 <BoltIcon />
-                {attack}
+                {pokemon.attack}
               </span>
             </div>
             <div className='defense'>
               <span>DEFENSE</span>
               <span>
                 <SecurityIcon />
-                {defense}
+                {pokemon.defense}
               </span>
             </div>
           </div>
-          <div className='type' style={{ color: color }}>
-            {type}
+          <div className='level'>Level {pokemon.level}</div>
+          {/* <div className='type' style={{ color: color }}>
+            Type {type}
+          </div> */}
+          <div className='release-btn' onClick={releasePokemon}>
+            Release Pokemon
           </div>
         </div>
       )}

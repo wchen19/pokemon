@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PokeCard from '../../components/PokeCard/PokeCard';
-import { pokemons } from '../../api/api';
+// import { pokemons } from '../../api/api';
 import './Home.css';
+import useToken, { API_URL } from '../../api/api';
+import axios from 'axios';
 
-const Home = ({ isLoggedIn }) => {
+const Home = () => {
+  const { token } = useToken();
+  const [pokemons, setPokemons] = useState([]);
   const [showGallery, setShowGallery] = useState(true);
 
   const tabClick = (e) => {
@@ -19,6 +23,61 @@ const Home = ({ isLoggedIn }) => {
     }
   };
 
+  const getAllPokemon = async () => {
+    try {
+      const item = await axios.get(`${API_URL}pokemon/allpokemon`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (item?.status === 200) {
+        setPokemons(item.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getMyPokemon = async () => {
+    try {
+      const item = await axios.get(`${API_URL}pokemon/mypokemon`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (item?.status === 200) {
+        setPokemons(item.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (token !== undefined) {
+      showGallery ? getAllPokemon() : getMyPokemon();
+    }
+  }, [showGallery]);
+
+  const renderElement = () => {
+    if (token !== undefined) {
+      if (showGallery) {
+        return pokemons.map((pokemon, key) => (
+          <PokeCard key={key} pokemon={pokemon} />
+        ));
+      } else {
+        return pokemons.map(
+          (pokemon, key) =>
+            pokemon.captured && (
+              <PokeCard key={key} pokemon={pokemon} showData={true} />
+            )
+        );
+      }
+    }
+  };
+
   return (
     <div className='home'>
       <div className='option-tab'>
@@ -29,36 +88,7 @@ const Home = ({ isLoggedIn }) => {
           My Pokemon<div></div>
         </div>
       </div>
-      <div className='poke-list'>
-        {isLoggedIn && showGallery
-          ? pokemons.map((pokemon) => (
-              <PokeCard
-                key={pokemon.id}
-                name={pokemon.name}
-                image={pokemon.image}
-                hp={pokemon.hp}
-                attack={pokemon.attack}
-                defense={pokemon.defense}
-                type={pokemon.type}
-                captured={pokemon.captured}
-              />
-            ))
-          : pokemons.map(
-              (pokemon, key) =>
-                pokemon.captured && (
-                  <PokeCard
-                    key={key}
-                    name={pokemon.name}
-                    image={pokemon.image}
-                    hp={pokemon.hp}
-                    attack={pokemon.attack}
-                    defense={pokemon.defense}
-                    type={pokemon.type}
-                    showGallery={showGallery}
-                  />
-                )
-            )}
-      </div>
+      <div className='poke-list'>{renderElement()}</div>
     </div>
   );
 };

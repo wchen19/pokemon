@@ -1,7 +1,10 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import useToken, { API_URL } from '../../api/api';
 import './Login.css';
 
-const Login = ({ setIsLoggedIn }) => {
+const Login = () => {
+  const { setToken } = useToken();
   const [state, setState] = useState('login');
   const [userData, setUserData] = useState({});
   const [isNameError, setIsNameError] = useState(true);
@@ -14,18 +17,16 @@ const Login = ({ setIsLoggedIn }) => {
     const eventName = event.target.name;
     const eventValue = event.target.value;
 
-    if (eventName === 'name') {
-      setIsNameError(!eventValue.match(/^[a-zA-Z ]*$/));
+    if (eventName === 'username') {
+      setIsNameError(!eventValue.match(/^[a-zA-Z0-9]*$/));
     }
     if (eventName === 'email') {
       setIsEmailError(!eventValue.match(/^[a-zA-Z0-9]+@+[a-z]+\.com$/));
     }
-    if (eventName === 'password') {
+    if (eventName === 'password' || eventName === 'confirmPassword') {
       setIsPwdError(
         !eventValue.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)
       );
-    }
-    if (eventName === 'confirmPassword') {
       setIsConfirmPwdError(userData.password !== eventValue);
     }
 
@@ -49,25 +50,51 @@ const Login = ({ setIsLoggedIn }) => {
     }
   };
 
+  const signUp = async () => {
+    try {
+      const item = await axios.post(`${API_URL}auth/register`, {
+        username: userData.username,
+        email: userData.email,
+        password: userData.password,
+      });
+      if (item?.status === 201) {
+        console.log(item);
+        setState('login');
+      }
+    } catch (error) {
+      console.log(error.config.data);
+      console.log(error);
+    }
+  };
+
+  const login = async () => {
+    try {
+      const item = await axios.post(`${API_URL}auth/login`, {
+        username: userData.username,
+        password: userData.password,
+      });
+      if (item?.status === 200) {
+        console.log(item);
+        setToken(item.data);
+        setError(false);
+        window.location.replace(window.location.origin);
+      }
+    } catch (error) {
+      setError(true);
+      console.log(error);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (state === 'signup') {
-      localStorage.setItem(userData.email, JSON.stringify(userData));
+      signUp();
       document.getElementsByClassName('confirm-pwd')[0].value = '';
-      document.getElementsByClassName('name')[0].value = '';
-      setState('login');
+      document.getElementsByClassName('email')[0].value = '';
     } else {
-      const user = JSON.parse(localStorage.getItem(userData.email));
-      if (user.password === userData.password) {
-        setError(false);
-        setIsLoggedIn(true);
-        localStorage.setItem('isLoggedIn', JSON.stringify(true));
-        window.location.replace(window.location.origin);
-      } else {
-        setError(true);
-      }
+      login();
     }
-    document.getElementsByClassName('email')[0].value = '';
+    document.getElementsByClassName('name')[0].value = '';
     document.getElementsByClassName('pwd')[0].value = '';
     document.getElementsByClassName('check-pwd')[0].checked = false;
     showPwd();
@@ -77,28 +104,28 @@ const Login = ({ setIsLoggedIn }) => {
     <div className='login-page'>
       <form className='form' id='loginForm' onSubmit={(e) => handleSubmit(e)}>
         <div className='title'>{state === 'login' ? 'Login' : 'Sign Up'}</div>
+        <input
+          type='text'
+          name='username'
+          className='name'
+          onChange={handleInputChange}
+          value={userData.username ? userData.username : ''}
+          placeholder='Username'
+          required
+        />
         {state === 'signup' && (
           <input
-            type='text'
-            name='name'
-            className='name'
+            type='email'
+            name='email'
+            className='email'
             onChange={handleInputChange}
-            value={userData.name ? userData.name : ''}
-            placeholder='Name'
+            pattern='^[a-zA-Z0-9]+@+[a-z]+\.com$'
+            value={userData.email ? userData.email : ''}
+            placeholder='Email'
+            style={{ border: error ? '2px solid red' : 'none' }}
             required
           />
         )}
-        <input
-          type='email'
-          name='email'
-          className='email'
-          onChange={handleInputChange}
-          pattern='^[a-zA-Z0-9]+@+[a-z]+\.com$'
-          value={userData.email ? userData.email : ''}
-          placeholder='Email'
-          style={{ border: error ? '2px solid red' : 'none' }}
-          required
-        />
         {state === 'login' ? (
           <input
             type='password'
@@ -149,7 +176,7 @@ const Login = ({ setIsLoggedIn }) => {
           disabled={
             state === 'signup'
               ? isEmailError || isNameError || isPwdError || isConfirmPwdError
-              : isEmailError || isPwdError
+              : isNameError || isPwdError
           }
         >
           {state === 'login' ? 'Login' : 'Sign Up'}

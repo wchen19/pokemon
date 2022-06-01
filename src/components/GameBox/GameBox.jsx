@@ -1,7 +1,10 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import useToken, { API_URL } from '../../api/api';
 import './GameBox.css';
 
-const GameBox = ({ name, captured, state, setState }) => {
+const GameBox = ({ wildPokemon, state, setState }) => {
+  const { token } = useToken();
   const [chances, setChances] = useState(3);
   const [randomNum, setRandomNum] = useState(0);
   const [number, setNumber] = useState(0);
@@ -10,12 +13,36 @@ const GameBox = ({ name, captured, state, setState }) => {
   const generateRandomNum = () => {
     const num = Math.floor(Math.random() * 20) + 1;
     setRandomNum(num);
+    console.log(num);
+  };
+
+  const capturePokemon = async () => {
+    const num = Math.floor(Math.random() * 100) + 1;
+    const pokemon = { ...wildPokemon, captured: true, level: num };
+
+    try {
+      const item = await axios.post(
+        `${API_URL}pokemon/addpokemon/${wildPokemon.id}`,
+        pokemon,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (item?.status === 201) {
+        console.log(item);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const guessNum = () => {
     if (number === randomNum) {
       setState('win');
-      captured = true;
+      capturePokemon();
       return;
     } else if (number <= randomNum) {
       setChances(chances - 1);
@@ -55,9 +82,9 @@ const GameBox = ({ name, captured, state, setState }) => {
     <div className='game-box'>
       {state === 'start' ? (
         <div className='desc'>
-          To capture the wild {name} you need to correctly guess the random
-          number between 1 - 20 within 3 chances, if failed the wild {name} will
-          run away.
+          To capture the wild {wildPokemon?.name} you need to correctly guess
+          the random number between 1 - 20 within 3 chances, if failed the wild{' '}
+          {wildPokemon?.name} will run away.
         </div>
       ) : state === 'guess' ? (
         <>
