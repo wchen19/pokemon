@@ -13,8 +13,33 @@
   padding: 1rem;
   font-size: 1.5rem;
   font-family: 'IBM Plex Mono';
+  text-align: center;
 }
 
 .catch-pokemon img {
   width: 200px;
+}
+
+@media only screen and (max-width: 768px) {
+  .catch-pokemon {
+    padding: 3rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .catch-pokemon {
+    margin-top: 125px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .catch-pokemon .title {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .catch-pokemon .title {
+    font-size: 1rem;
+  }
 }

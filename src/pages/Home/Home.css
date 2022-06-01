@@ -44,3 +44,33 @@
   justify-content: center;
   margin-top: 3rem;
 }
+
+@media only screen and (max-width: 768px) {
+  .home {
+    padding: 3rem;
+  }
+
+  .home .poke-list {
+    gap: 2rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .home {
+    margin-top: 125px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .home {
+    padding: 3rem 1rem;
+  }
+
+  .home .option-tab .tab {
+    font-size: 1.2rem;
+  }
+
+  .home .poke-list {
+    margin-top: 1rem;
+  }
+}

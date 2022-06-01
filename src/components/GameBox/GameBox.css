@@ -55,3 +55,59 @@
   font-weight: 600;
   transform: scale(1.05);
 }
+
+@media only screen and (max-width: 768px) {
+  .game-box {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .game-box {
+    width: 80%;
+  }
+
+  .game-box .btn {
+    font-size: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .game-box .desc {
+    font-size: 1rem;
+  }
+
+  .game-box .btn {
+    font-size: 1rem;
+  }
+
+  .game-box .chances {
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .game-box .chances .chance {
+    font-size: 2.5rem;
+    padding: 0 1rem;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .game-box .chances {
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .game-box .chances .chance {
+    font-size: 2rem;
+    padding: 0 1rem;
+  }
+
+  .game-box input {
+    border: none;
+    border-radius: 10px;
+    background: rgb(202, 202, 202);
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+}

@@ -11,9 +11,7 @@
   justify-content: space-between;
   z-index: 100;
 }
-
 .left-navbar {
-  font-family: 'Bangers';
   display: flex;
   flex: 1;
   gap: 1.5rem;
@@ -48,7 +46,7 @@
   align-items: center;
 }
 
-.right-navbar a {
+.navbar a {
   text-decoration: none;
   color: #fd4d4d;
 }
@@ -58,7 +56,7 @@
   list-style: none;
 }
 
-.right-navbar ul li:hover {
+.navbar a:hover {
   cursor: pointer;
 }
 
@@ -72,8 +70,8 @@
   transition: all 0.1s;
 }
 
-.right-navbar .user,
-.right-navbar .login {
+.navbar .user,
+.navbar .login {
   border: 4px solid #a7d9ff;
   font-size: 1.1rem;
   border-radius: 50px;
@@ -83,12 +81,12 @@
   transition: all 0.2s;
 }
 
-.right-navbar .login {
+.navbar .login {
   padding: 0.7rem 1.5rem;
 }
 
-.right-navbar .user:hover,
-.right-navbar .login:hover {
+.navbar .user:hover,
+.navbar .login:hover {
   background-color: #a7d9ff;
   font-weight: 600;
   color: rgb(61, 61, 61);
@@ -97,8 +95,56 @@
   transform: scale(1.05);
 }
 
-.right-navbar .user:active,
-.right-navbar .login:active {
+.navbar .user:active,
+.navbar .login:active {
   /* box-shadow: 0px 3px 8px 3px rgba(0, 0, 0, 0.2); */
   transform: scale(0.9);
+}
+
+@media only screen and (max-width: 1024px) {
+  .right-navbar {
+    flex: 3;
+    gap: 1rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .left-navbar {
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    width: 90%;
+  }
+
+  .right-navbar {
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    gap: 2rem;
+    width: 90%;
+  }
+
+  .right-navbar ul {
+    justify-content: space-around;
+    padding: 0;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .left-navbar img {
+    width: 140px;
+    height: 50px;
+  }
+  .navbar .user,
+  .navbar .login {
+    padding: 0.7rem 1.2rem;
+  }
 }

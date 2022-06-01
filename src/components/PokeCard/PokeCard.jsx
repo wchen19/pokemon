@@ -77,34 +77,38 @@ const PokeCard = ({ pokemon, showData = false }) => {
         opacity: !showData && pokemon.captured ? 0.5 : 1,
       }}
     >
-      <img src={pokemon.image} alt={pokemon.name} />
-      <div className='name'>{pokemon.name}</div>
+      <div>
+        <img src={pokemon.image} alt={pokemon.name} />
+        <div className='name'>{pokemon.name}</div>
+      </div>
       {showData && (
         <div className='info-section'>
-          <div className='info'>
-            <div className='hp'>
-              <span>HP</span>
-              <span>
-                <FavoriteIcon />
-                {pokemon.hp}
-              </span>
+          <div className='stat-section'>
+            <div className='info'>
+              <div className='hp'>
+                <span>HP</span>
+                <span>
+                  <FavoriteIcon />
+                  {pokemon.hp}
+                </span>
+              </div>
+              <div className='attack'>
+                <span>ATTACK</span>
+                <span>
+                  <BoltIcon />
+                  {pokemon.attack}
+                </span>
+              </div>
+              <div className='defense'>
+                <span>DEFENSE</span>
+                <span>
+                  <SecurityIcon />
+                  {pokemon.defense}
+                </span>
+              </div>
             </div>
-            <div className='attack'>
-              <span>ATTACK</span>
-              <span>
-                <BoltIcon />
-                {pokemon.attack}
-              </span>
-            </div>
-            <div className='defense'>
-              <span>DEFENSE</span>
-              <span>
-                <SecurityIcon />
-                {pokemon.defense}
-              </span>
-            </div>
+            <div className='level'>Level {pokemon.level}</div>
           </div>
-          <div className='level'>Level {pokemon.level}</div>
           {/* <div className='type' style={{ color: color }}>
             Type {type}
           </div> */}

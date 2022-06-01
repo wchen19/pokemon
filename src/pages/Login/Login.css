@@ -85,3 +85,43 @@
   font-weight: normal;
   cursor: default;
 }
+
+@media only screen and (max-width: 768px) {
+  .login-page {
+    padding: 3rem;
+  }
+
+  .login-page .form {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .login-page {
+    margin-top: 125px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .login-page {
+    padding: 3rem 1rem;
+  }
+
+  .login-page .title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .login-page .name,
+  .login-page .email,
+  .login-page .pwd,
+  .login-page .confirm-pwd,
+  .login-page .show-pwd {
+    font-size: 1rem;
+  }
+
+  .login-page .pwd-guide,
+  .login-page .email-guide {
+    font-size: 0.9rem;
+  }
+}
