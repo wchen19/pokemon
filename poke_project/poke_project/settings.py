@@ -20,12 +20,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-01d(i=77q$a-%=oqf+%l7x!)_eruoj@6nx$)$r(1+@^906u9^+'
+SECRET_KEY = 'django-insecure-ta(u^%^#=q4b+dk!5qz3d0oz(tcy1*_nqwwjqmuys#=3ho2j6!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 AUTH_USER_MODEL='authentication.User'
 
@@ -38,19 +40,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'authentication',
     'pokemon',
+    'authentication',
+    'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'poke_project.urls'
@@ -108,6 +113,7 @@ REST_FRAMEWORK = {
         'authentication.jwt.JWTAuthentication',
     ]
 }
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/

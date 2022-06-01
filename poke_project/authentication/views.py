@@ -36,10 +36,10 @@ class LoginAPIView(GenericAPIView):
     serializer_class=LoginSerializer
     
     def post(self, request):
-        email = request.data.get('email', None)
+        username = request.data.get('username', None)
         password = request.data.get('password', None)
         
-        user = authenticate(username = email, password = password)
+        user = authenticate(username = username, password = password)
         
         if user:
             serializers=self.serializer_class(user)
@@ -47,3 +47,9 @@ class LoginAPIView(GenericAPIView):
             return response.Response(serializers.data, status=status.HTTP_200_OK)
         
         return response.Response({'message':'Invalid Credentials, try again'},status=status.HTTP_401_UNAUTHORIZED)
+    
+class LogoutAPIView(GenericAPIView):
+    permission_classes=[permissions.IsAuthenticated]
+    def post(self, request):
+        request.user.auth_token.delete()
+        return response.Response({'message': 'Logout successfull'}, status=status.HTTP_200_OK)
